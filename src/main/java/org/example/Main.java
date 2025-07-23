@@ -4,7 +4,6 @@ import org.example.bean.Task;
 import org.example.util.JsonConvert;
 import org.example.util.TaskUtil;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -12,17 +11,18 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        String[] commonds= {"add","update","delete","mark-in-progress","mark-done","list"};
+        String[] commands = {"add","update","delete","mark-in-progress","mark-done","list"};
         String[] status= {"todo","done","in-progress"};
-
 
         Map<Integer,Task> taskArrayList=new HashMap<>();
         taskArrayList=JsonConvert.printJsonToMap();
-        Boolean end=true;
+        boolean end=true;
         Scanner scanner=new Scanner(System.in);
         String cmd;
 
         Map<Integer,String> results =new HashMap<>();
+
+        System.out.println("TaskTrackerCLI start");
 
         while (end){
             cmd=scanner.nextLine();
@@ -31,8 +31,14 @@ public class Main {
 
                     // check first param is task-cli
                     if(!"task-cli".equals(params[0])){
-                        results.put(1,"The first parameter should be \"task-cli\"");
-                        System.out.println(results.get(1));
+                        if("exit".equals(params[0])){
+                            System.out.println("TaskTrackerCLI stop");
+                            end=false;
+                            continue;
+                        }else {
+                            results.put(1, "The first parameter should be \"task-cli\"");
+                            System.out.println(results.get(1));
+                        }
                     }else {
                         switch (params[1]) {
                             case "add":
@@ -136,7 +142,7 @@ public class Main {
                                 }
                                 break;
                             default:
-                                System.out.println("you can only use command like this "+ Arrays.toString(commonds));
+                                System.out.println("you can only use command like this "+ Arrays.toString(commands));
                         }
                     }
             }
