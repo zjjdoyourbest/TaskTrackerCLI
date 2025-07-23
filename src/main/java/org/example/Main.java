@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.bean.Task;
+import org.example.util.JsonConvert;
 import org.example.util.TaskUtil;
 
 import java.lang.reflect.Array;
@@ -16,6 +17,7 @@ public class Main {
 
 
         Map<Integer,Task> taskArrayList=new HashMap<>();
+        taskArrayList=JsonConvert.printJsonToMap();
         Boolean end=true;
         Scanner scanner=new Scanner(System.in);
         String cmd;
@@ -41,6 +43,7 @@ public class Main {
                                 }else{
                                     int i =taskArrayList.size()+1;
                                     taskArrayList.put(i,new Task(i,params[2],status[0], LocalDateTime.now(),LocalDateTime.now()));
+                                    JsonConvert.printMapToJson(taskArrayList);
                                     System.out.println("Task added successfully (ID: "+i+")");
                                 }
                                 break;
@@ -58,6 +61,7 @@ public class Main {
                                         Task task = taskArrayList.get(Integer.parseInt(params[2]));
                                         task.setDescription(params[3]);
                                         task.setUpdatedAt(LocalDateTime.now());
+                                        JsonConvert.printMapToJson(taskArrayList);
                                         System.out.println("Task updated successfully (ID: "+params[2]+")");
                                     }
                                 }
@@ -74,6 +78,7 @@ public class Main {
                                         continue;
                                     }else{
                                         taskArrayList.remove(Integer.parseInt(params[2]));
+                                        JsonConvert.printMapToJson(taskArrayList);
                                         System.out.println("Task deleted successfully (ID: "+params[2]+")");
                                     }
                                 }
@@ -92,6 +97,7 @@ public class Main {
                                         Task task = taskArrayList.get(Integer.parseInt(params[2]));
                                         task.setStatus(status[2]);
                                         task.setUpdatedAt(LocalDateTime.now());
+                                        JsonConvert.printMapToJson(taskArrayList);
                                         System.out.println("Task updated successfully (ID: "+params[2]+")");
                                     }
                                 }
@@ -110,6 +116,7 @@ public class Main {
                                         Task task = taskArrayList.get(Integer.parseInt(params[2]));
                                         task.setStatus(status[1]);
                                         task.setUpdatedAt(LocalDateTime.now());
+                                        JsonConvert.printMapToJson(taskArrayList);
                                         System.out.println("Task updated successfully (ID: "+params[2]+")");
                                     }
                                 }

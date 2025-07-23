@@ -52,21 +52,25 @@ public final class TaskUtil {
 
         if(!arrayList.isEmpty()) {
             if(condition.isEmpty()) {
-                System.out.println("|id|-----status-----|---createdAt---|---updatedAt---|------------------description------------------|");
+                System.out.println("|-id-|-----status-----|------------------description------------------|------createdAt------|------updatedAt------|");
                 for (Map.Entry<Integer, Task> entry : arrayList.entrySet()) {
                     Task task = entry.getValue();
-                    System.out.println(task.getId() + "  " + task.getStatus() + "    " + task.getCreatedAt() + " " + task.getUpdatedAt() + " " + task.getDescription());
+                    System.out.println("|"+String.format("%-4s",String.valueOf(task.getId())) + "|" + String.format("%-16s",task.getStatus())
+                            + "|" + String.format("%-47s", task.getDescription()) + "|" + String.format("%-21s",task.getCreatedAt())  + "|" +String.format("%-21s",task.getUpdatedAt()) +"|" );
                 }
             }else {
+
                 boolean flg=true;
                 for (Map.Entry<Integer, Task> entry : arrayList.entrySet()) {
                     Task task = entry.getValue();
                     if(task.getStatus().equals(condition)){
                         if (flg){
-                            System.out.println("|id|-----status-----|---createdAt---|---updatedAt---|------------------description------------------|");
+                            System.out.println("|-id-|-----status-----|------------------description------------------|------createdAt------|------updatedAt------|");
                             flg=false;
                         }
-                        System.out.println(task.getId() + "  " + task.getStatus() + "    " + task.getCreatedAt() + " " + task.getUpdatedAt() + " " + task.getDescription());
+                        System.out.println("|"+String.format("%-4s",String.valueOf(task.getId())) + "|" + String.format("%-16s",task.getStatus())
+                                + "|" + String.format("%-47s", task.getDescription()) + "|" + String.format("%-21s",task.getCreatedAt())  + "|" +String.format("%-21s",task.getUpdatedAt()) +"|" );
+
                     }
                 }
             }
