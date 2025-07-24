@@ -13,14 +13,14 @@ public final class TaskUtil {
     }
 
     //检查输入的命令是否满足参数数量要求
-    public static Map<Integer,String> checkLength(String[] params,int length){
+    public static Map<Integer,String> checkLength(ArrayList<String> params,int length){
         Integer resultKey=0;
         String message="";
         Map<Integer,String> results =new HashMap<>();
 
 
         //check params length
-        if(params.length != length){
+        if(params.size() != length){
             resultKey=1;
             message="The number of input code parameters is incorrect, the correct length is "+length;
         }
@@ -72,6 +72,9 @@ public final class TaskUtil {
                                 + "|" + String.format("%-47s", task.getDescription()) + "|" + String.format("%-21s",task.getCreatedAt())  + "|" +String.format("%-21s",task.getUpdatedAt()) +"|" );
 
                     }
+                }
+                if(flg){
+                    System.out.println("No data matching the criteria");
                 }
             }
         }else {
